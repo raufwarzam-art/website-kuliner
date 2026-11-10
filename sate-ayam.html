@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sate Ayam</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: white;
+            background:
+                linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.75)),
+                url("./tanjiro_kamado_hd_demon_slayer_kimetsu_no_yaiba_2-1920x1080.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 25px 15px;
+        }
+
+        .star-background {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            color: white;
+            animation: starMove 8s linear infinite,
+                       starTwinkle 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes starMove {
+            from { transform: translateY(-20px); }
+            to { transform: translateY(100vh); }
+        }
+
+        @keyframes starTwinkle {
+            from { opacity: 0.2; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 25px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .food-icon {
+            text-align: center;
+            font-size: 65px;
+            margin: 15px 0;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .rating {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 38px;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .rating input:checked ~ label {
+            color: #aaa;
+        }
+
+        .rating label:hover,
+        .rating label:hover ~ label {
+            color: gold;
+        }
+
+        .rating {
+            direction: rtl;
+        }
+
+        .rating input:checked + label,
+        .rating input:checked + label ~ label {
+            color: gold;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 100px;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            resize: vertical;
+            font-family: Arial, sans-serif;
+            margin-top: 10px;
+        }
+
+        button, .back-button {
+            display: inline-block;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            background: #ff9800;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button {
+            width: 100%;
+        }
+
+        .back-button {
+            background: #444;
+        }
+
+        #hasil {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+        }
+
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="star-background">
+    <span class="star" style="left:10%; top:10%;">✦</span>
+    <span class="star" style="left:30%; top:30%;">✧</span>
+    <span class="star" style="left:50%; top:5%;">✦</span>
+    <span class="star" style="left:70%; top:20%;">✧</span>
+    <span class="star" style="left:90%; top:40%;">✦</span>
+    <span class="star" style="left:20%; top:60%;">✧</span>
+    <span class="star" style="left:80%; top:70%;">✦</span>
+</div>
+
+<div class="container">
+
+    <a href="./index.html" class="back-button">
+        ← Kembali ke Menu
+    </a>
+
+    <h1>Sate Ayam</h1>
+
+    <div class="food-icon">🍢</div>
+
+    <p class="center">
+        Sate ayam adalah makanan khas Indonesia berupa potongan
+        daging ayam yang ditusuk, dibakar, dan disajikan dengan
+        bumbu kacang atau kecap.
+    </p>
+
+    <hr>
+
+    <h2 class="center">Berikan Penilaianmu!</h2>
+
+    <p class="center">
+        Berapa nilai yang kamu berikan untuk Sate Ayam?
+    </p>
+
+    <form id="ratingForm">
+
+        <div class="rating">
+            <input type="radio" name="bintang" id="bintang5" value="5" required>
+            <label for="bintang5">★</label>
+
+            <input type="radio" name="bintang" id="bintang4" value="4">
+            <label for="bintang4">★</label>
+
+            <input type="radio" name="bintang" id="bintang3" value="3">
+            <label for="bintang3">★</label>
+
+            <input type="radio" name="bintang" id="bintang2" value="2">
+            <label for="bintang2">★</label>
+
+            <input type="radio" name="bintang" id="bintang1" value="1">
+            <label for="bintang1">★</label>
+        </div>
+
+        <label for="alasan">Alasan penilaian:</label>
+
+        <textarea
+            id="alasan"
+            placeholder="Tuliskan alasan kamu di sini..."
+        ></textarea>
+
+        <button type="submit">Kirim Penilaian</button>
+
+    </form>
+
+    <div id="hasil">
+        <h2>Terima Kasih!</h2>
+        <p id="hasilBintang"></p>
+        <p id="hasilAlasan"></p>
+
+        <div class="center">
+            <a href="./index.html" class="back-button">
+                ← Kembali ke Halaman Utama
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    const form = document.getElementById("ratingForm");
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const pilihan = document.querySelector(
+            'input[name="bintang"]:checked'
+        );
+
+        const alasan = document.getElementById("alasan").value;
+
+        if (!pilihan) {
+            alert("Silakan pilih bintang terlebih dahulu!");
+            return;
+        }
+
+        document.getElementById("hasilBintang").textContent =
+            "Penilaian: " + pilihan.value + " dari 5 bintang";
+
+        document.getElementById("hasilAlasan").textContent =
+            "Alasan: " + (alasan.trim() || "Tidak ada alasan.");
+
+        document.getElementById("hasil").style.display = "block";
+
+        form.querySelector("button").style.display = "none";
+
+        document.getElementById("hasil").scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+</script>
+
+</body>
+</html>

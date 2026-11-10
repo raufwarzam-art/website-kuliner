@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Makanan</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #263238;
+            background-image: url('tanjiro_kamado_hd_demon_slayer_kimetsu_no_yaiba_2-1920x1080.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 20px;
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* ANIMASI BINTANG */
+        .star-background {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            bottom: -15px;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 8px 2px rgba(255,255,255,0.8);
+            animation: starMove linear infinite,
+                       starTwinkle 2s ease-in-out infinite alternate;
+        }
+
+        .star:nth-child(3n) {
+            width: 2px;
+            height: 2px;
+        }
+
+        .star:nth-child(4n) {
+            width: 4px;
+            height: 4px;
+        }
+
+        @keyframes starMove {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-115vh);
+            }
+        }
+
+        @keyframes starTwinkle {
+            from {
+                opacity: 0.2;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 25px;
+            background: rgba(15,20,30,0.12);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+        }
+
+        .glass-card {
+            background: rgba(15,20,30,0.55);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 15px;
+            padding: 22px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .header {
+            text-align: center;
+        }
+
+        .header-icon {
+            font-size: 55px;
+        }
+
+        h1 {
+            font-size: 27px;
+            margin: 10px 0;
+        }
+
+        h2 {
+            font-size: 19px;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: white;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 12px;
+            transition: 0.3s;
+        }
+
+        .menu-item:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-3px);
+        }
+
+        .menu-icon {
+            font-size: 38px;
+        }
+
+        .menu-text h2 {
+            margin: 0 0 5px;
+        }
+
+        .menu-text p {
+            margin: 0;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .arrow {
+            margin-left: auto;
+            font-size: 23px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 12px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .star {
+                animation: none;
+            }
+
+            .menu-item {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- BINTANG BERGERAK -->
+<div class="star-background" aria-hidden="true">
+    <span class="star" style="left:5%; animation-duration:12s;"></span>
+    <span class="star" style="left:15%; animation-duration:17s; animation-delay:3s;"></span>
+    <span class="star" style="left:25%; animation-duration:14s; animation-delay:1s;"></span>
+    <span class="star" style="left:35%; animation-duration:19s; animation-delay:5s;"></span>
+    <span class="star" style="left:45%; animation-duration:13s; animation-delay:2s;"></span>
+    <span class="star" style="left:55%; animation-duration:18s; animation-delay:4s;"></span>
+    <span class="star" style="left:65%; animation-duration:15s; animation-delay:1s;"></span>
+    <span class="star" style="left:75%; animation-duration:20s; animation-delay:6s;"></span>
+    <span class="star" style="left:85%; animation-duration:14s; animation-delay:2s;"></span>
+    <span class="star" style="left:95%; animation-duration:17s; animation-delay:4s;"></span>
+</div>
+
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="glass-card header">
+        <div class="header-icon">🍽️</div>
+
+        <h1>MENU MAKANAN</h1>
+
+        <p>
+            Selamat datang!
+            Silakan pilih makanan yang ingin kamu nilai.
+        </p>
+    </div>
+
+    <!-- DAFTAR MENU -->
+    <div class="glass-card">
+
+        <h2>📋 Pilihan Menu</h2>
+
+        <a href="./nasi-goreng.html" class="menu-item">
+            <div class="menu-icon">🍜</div>
+
+            <div class="menu-text">
+                <h2>Nasi Goreng Madu</h2>
+                <p>Klik untuk memberikan penilaian.</p>
+            </div>
+
+            <div class="arrow">›</div>
+        </a>
+
+        <a href="./mie-ayam.html" class="menu-item">
+            <div class="menu-icon">🍲</div>
+
+            <div class="menu-text">
+                <h2>Mie Ayam Bakso</h2>
+                <p>Klik untuk memberikan penilaian.</p>
+            </div>
+
+            <div class="arrow">›</div>
+        </a>
+
+        <a href="./sate-ayam.html" class="menu-item">
+            <div class="menu-icon">🍢</div>
+
+            <div class="menu-text">
+                <h2>Sate Ayam</h2>
+                <p>Klik untuk memberikan penilaian.</p>
+            </div>
+
+            <div class="arrow">›</div>
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
