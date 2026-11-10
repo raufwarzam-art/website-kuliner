@@ -212,22 +212,42 @@
 
 </div>
 
+
 <script>
-    const form = document.getElementById("ratingForm");
+const form = document.getElementById("ratingForm");
+const URL_RATING = "https://script.google.com/macros/s/AKfycbz_XTmgZI_EOV3l0OWoib6-iS7dnv0rZn77x8hC6anGNFQBBgjfoHr_-qaS1z4t1jGD3A/exec";
 
-    form.addEventListener("submit", function(event) {
-        event.preventDefault();
+form.addEventListener("submit", async function(event) {
+    event.preventDefault();
 
-        const pilihan = document.querySelector(
-            'input[name="bintang"]:checked'
-        );
+    const pilihan = document.querySelector(
+        'input[name="bintang"]:checked'
+    );
 
-        const alasan = document.getElementById("alasan").value;
+    const alasan = document.getElementById("alasan").value;
+    const tombol = form.querySelector("button");
 
-        if (!pilihan) {
-            alert("Silakan pilih bintang terlebih dahulu!");
-            return;
-        }
+    if (!pilihan) {
+        alert("Silakan pilih bintang terlebih dahulu!");
+        return;
+    }
+
+    tombol.disabled = true;
+    tombol.textContent = "Mengirim...";
+
+    try {
+        await fetch(URL_RATING, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "text/plain;charset=utf-8"
+            },
+            body: JSON.stringify({
+                makanan: "Nasi Goreng Madu",
+                rating: Number(pilihan.value),
+                komentar: alasan
+            })
+        });
 
         document.getElementById("hasilBintang").textContent =
             "Penilaian: " + pilihan.value + " dari 5 bintang";
@@ -236,14 +256,19 @@
             "Alasan: " + (alasan.trim() || "Tidak ada alasan.");
 
         document.getElementById("hasil").style.display = "block";
-
-        form.querySelector("button").style.display = "none";
-
+        tombol.textContent = "Permintaan terkirim";
         document.getElementById("hasil").scrollIntoView({
             behavior: "smooth"
         });
-    });
+
+    } catch (error) {
+        tombol.disabled = false;
+        tombol.textContent = "Kirim Penilaian";
+        alert("Gagal mengirim. Periksa koneksi internet lalu coba lagi.");
+    }
+});
 </script>
+
 
 </body>
 </html>
